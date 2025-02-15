@@ -15,7 +15,7 @@ The API is deployed on **Render**.
 - **Request Body (JSON)**
   ```json
   {
-    "email": "test@example.com",
+    "email": "naman@example.com",
     "phoneNumber": "1234567890"
   }
 
