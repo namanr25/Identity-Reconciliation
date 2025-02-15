@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema({
     phoneNumber: {
-        type: String,
+        type: String, 
         required: true 
     },
-    email: { 
-        type: String,
+    email: {
+        type: String, 
         required: true 
     },
     linkedId: { 
@@ -27,13 +27,17 @@ const contactSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
-    // not used in this project
     deletedAt: { 
         type: Date, 
         default: null 
     }
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
+// Auto-update `updatedAt` on save
+contactSchema.pre("save", function (next) {
+    this.updatedAt = Date.now();
+    next();
+});
 
+const Contact = mongoose.model("Contact", contactSchema);
 module.exports = Contact;
